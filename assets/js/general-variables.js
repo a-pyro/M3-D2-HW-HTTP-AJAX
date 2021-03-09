@@ -1098,7 +1098,7 @@ const endpoints = [
 
 function fetchDatas(urls) {
   const localList = [];
-  urls.forEach((endpoint) => {
+  urls.forEach((endpoint, idx) => {
     fetch(endpoint, {
       method: 'GET',
       headers: {
@@ -1113,7 +1113,7 @@ function fetchDatas(urls) {
           artistName: endpoint.slice(endpoint.indexOf('=') + 1),
           artistData,
         });
-        console.log(data);
+        console.log(data, idx);
         showHomePage(localList);
       })
       .catch((err) => {
@@ -1122,6 +1122,7 @@ function fetchDatas(urls) {
   });
 }
 
+// UBEYT
 async function searchDeezer(query) {
   try {
     const response = await fetch(
@@ -1144,7 +1145,7 @@ async function searchDeezer(query) {
     console.log(error);
   }
 }
-
+//
 async function getFromLocal(key, callback) {
   let data = localStorage.getItem(key);
   if (data) {
@@ -1157,6 +1158,7 @@ async function getFromLocal(key, callback) {
     return data;
   }
 }
+
 const artists = ['eminem', 'queen', 'megadeth'];
 async function getQueenSongs() {
   const promiseArray = artists.map(async (artist) => {
