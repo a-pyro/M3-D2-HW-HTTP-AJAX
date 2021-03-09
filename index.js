@@ -192,3 +192,13 @@ logoutDropDown.addEventListener('click', () => {
     login.classList.remove('d-none');
   }, 600);
 });
+
+countUniqueAlbumsBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const titles = document.querySelectorAll('.card-title-custom');
+  const txtTitles = [...titles].map((title) => title.innerText);
+  console.log(txtTitles);
+  const uniques = new Set(txtTitles);
+  console.log(uniques);
+  displayUniqueAlbumCount.value = uniques.size;
+});
