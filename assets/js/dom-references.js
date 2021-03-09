@@ -27,3 +27,7 @@ const sideMenuMobileBtn = document.querySelector('#sideMenuMobile a');
 const logoutDropDown = document.querySelector('.logout');
 const toasterEntryPoint = document.getElementById('toasterEntryPoint');
 const inputField = document.querySelector('.input-search');
+const countUniqueAlbumsBtn = document.getElementById('countUniqueAlbumsBtn');
+const displayUniqueAlbumCount = document.getElementById(
+  'displayUniqueAlbumCount'
+);
