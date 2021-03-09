@@ -126,6 +126,7 @@ const arrofColor = [
   'baa5ff',
 ];
 
+// used to display cards on the search page
 const searchDatas = [...Array(40)].map((element, idx) => {
   return {
     color: `#${arrofColor[idx]}`,
@@ -134,6 +135,7 @@ const searchDatas = [...Array(40)].map((element, idx) => {
   };
 });
 
+// used to show covers on the homepage
 const sectionsData = [
   {
     sectionName: 'Ascoltate di recente',
@@ -1085,4 +1087,38 @@ const musicStore = sectionsData.reduce((acc, cv) => {
   cv.albums.forEach((album) => acc.push(album));
   return acc;
 }, []);
-console.log(musicStore);
+
+// fetched datas from deezer api
+const endpoints = [
+  'https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem',
+  'https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica',
+  'https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth',
+];
+
+const artistsList = [];
+
+function fetchDatas(urls, localList) {
+  urls.forEach((endpoint) => {
+    fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': '4a1be3d568mshe449eb4b1d7c2c9p147764jsn9796552806b6',
+        'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const { data: artistData } = data;
+        localList.push({
+          artist: endpoint.slice(endpoint.indexOf('=') + 1),
+          artistData,
+        });
+        console.log(localList);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+}
+
+fetchDatas(endpoints, artistsList);
