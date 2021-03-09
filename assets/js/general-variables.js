@@ -1,3 +1,4 @@
+const myKey = config.MY_KEY;
 const urls = [
   'https://t.scdn.co/images/ad4d5c268a214f78920517e76e6ed107.jpeg',
   'https://t.scdn.co/images/68433b0ee5b5465b8e926c42b84cbcdb.jpeg',
@@ -1101,7 +1102,7 @@ function fetchDatas(urls) {
     fetch(endpoint, {
       method: 'GET',
       headers: {
-        'x-rapidapi-key': 'vaccaloca',
+        'x-rapidapi-key': myKey,
         'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
       },
     })
@@ -1128,7 +1129,7 @@ async function searchDeezer(query) {
       {
         method: 'GET',
         headers: {
-          'x-rapidapi-key': 'vaccaloca',
+          'x-rapidapi-key': myKey,
           'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
         },
       }
