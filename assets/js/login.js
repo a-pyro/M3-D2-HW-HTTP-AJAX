@@ -8,7 +8,8 @@ function getUserData() {
   home.classList.remove('animate__fadeOutLeft');
   login.classList.add('d-none');
   home.classList.remove('d-none');
-  showHomePage();
+  // showHomePage();
+  fetchDatas(endpoints);
   fillUsersPlayList(musicStore, [userPlaylists, sideMenuMobile]);
   setTimeout(() => {
     showToaster(loginUserTextName);

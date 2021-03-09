@@ -107,7 +107,8 @@ function goToHome(e) {
   nextBtn.classList.remove('d-none');
   e.preventDefault();
   makeActive(e.currentTarget);
-  showHomePage();
+  // showHomePage();
+  fetchDatas(endpoints);
 }
 function goTosearch(e) {
   nextBtn.classList.add('d-none');
@@ -140,7 +141,8 @@ spotifyLogo.addEventListener('click', (e) => {
   searchSideDesktop.classList.remove('active');
   librarySideDesktop.classList.remove('active');
   installAppBtn.classList.remove('active');
-  showHomePage();
+  // showHomePage();
+  fetchDatas(endpoints);
 });
 
 // go to home from prev Btn
@@ -153,7 +155,8 @@ prevBtn.addEventListener('click', (e) => {
   searchSideDesktop.classList.remove('active');
   librarySideDesktop.classList.remove('active');
   installAppBtn.classList.remove('active');
-  showHomePage();
+  // showHomePage();
+  fetchDatas(endpoints);
 });
 
 function goToHomeSide(e) {
@@ -162,7 +165,8 @@ function goToHomeSide(e) {
   nextBtn.classList.remove('d-none');
   e.preventDefault();
   makeActiveSideMenu(e.currentTarget);
-  showHomePage();
+  // showHomePage();
+  fetchDatas(endpoints);
 }
 
 function goTolibrarySide(e) {

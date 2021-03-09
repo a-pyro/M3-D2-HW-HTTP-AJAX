@@ -1112,7 +1112,8 @@ function fetchDatas(urls) {
           artistName: endpoint.slice(endpoint.indexOf('=') + 1),
           artistData,
         });
-        console.log(localList);
+        console.log(data);
+        showHomePage(localList);
       })
       .catch((err) => {
         console.error(err);
@@ -1120,4 +1121,4 @@ function fetchDatas(urls) {
   });
 }
 
-fetchDatas(endpoints);
+// fetchDatas(endpoints); moved to login
