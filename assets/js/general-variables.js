@@ -1101,7 +1101,7 @@ function fetchDatas(urls) {
     fetch(endpoint, {
       method: 'GET',
       headers: {
-        'x-rapidapi-key': '4a1be3d568mshe449eb4b1d7c2c9p147764jsn9796552806b6',
+        'x-rapidapi-key': 'vaccaloca',
         'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
       },
     })
@@ -1128,8 +1128,7 @@ async function searchDeezer(query) {
       {
         method: 'GET',
         headers: {
-          'x-rapidapi-key':
-            '4a1be3d568mshe449eb4b1d7c2c9p147764jsn9796552806b6',
+          'x-rapidapi-key': 'vaccaloca',
           'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
         },
       }
