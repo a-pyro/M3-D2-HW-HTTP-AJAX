@@ -1121,4 +1121,51 @@ function fetchDatas(urls) {
   });
 }
 
+async function searchDeezer(query) {
+  try {
+    const response = await fetch(
+      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`,
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key':
+            '4a1be3d568mshe449eb4b1d7c2c9p147764jsn9796552806b6',
+          'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
+        },
+      }
+    );
+    const { data } = await response.json();
+    if (data) {
+      return data;
+    } else {
+      console.log('No data array in resp');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getFromLocal(key, callback) {
+  let data = localStorage.getItem(key);
+  if (data) {
+    console.log('from local');
+    return JSON.parse(data);
+  } else {
+    console.log('its from deezer');
+    data = await callback(key);
+    localStorage.setItem(key, JSON.stringify(data));
+    return data;
+  }
+}
+const artists = ['eminem', 'queen', 'megadeth'];
+async function getQueenSongs() {
+  const promiseArray = artists.map(async (artist) => {
+    const result = await getFromLocal(artist, searchDeezer);
+    return result;
+  });
+  const data = await Promise.all(promiseArray);
+  const merged = data.reduce((curr, acc) => [...acc, ...curr], []);
+  console.log(merged);
+}
+
 // fetchDatas(endpoints); moved to login
