@@ -1095,9 +1095,8 @@ const endpoints = [
   'https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth',
 ];
 
-const artistsList = [];
-
-function fetchDatas(urls, localList) {
+function fetchDatas(urls) {
+  const localList = [];
   urls.forEach((endpoint) => {
     fetch(endpoint, {
       method: 'GET',
@@ -1110,7 +1109,7 @@ function fetchDatas(urls, localList) {
       .then((data) => {
         const { data: artistData } = data;
         localList.push({
-          artist: endpoint.slice(endpoint.indexOf('=') + 1),
+          artistName: endpoint.slice(endpoint.indexOf('=') + 1),
           artistData,
         });
         console.log(localList);
@@ -1121,4 +1120,4 @@ function fetchDatas(urls, localList) {
   });
 }
 
-fetchDatas(endpoints, artistsList);
+fetchDatas(endpoints);
