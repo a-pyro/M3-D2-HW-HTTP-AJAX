@@ -1145,7 +1145,7 @@ async function searchDeezer(query) {
     console.log(error);
   }
 }
-//
+
 async function getFromLocal(key, callback) {
   let data = localStorage.getItem(key);
   if (data) {
@@ -1169,5 +1169,3 @@ async function getQueenSongs() {
   const merged = data.reduce((curr, acc) => [...acc, ...curr], []);
   console.log(merged);
 }
-
-// fetchDatas(endpoints); moved to login
