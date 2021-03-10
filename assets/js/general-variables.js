@@ -1169,5 +1169,3 @@ async function getQueenSongs() {
   const merged = data.reduce((curr, acc) => [...acc, ...curr], []);
   console.log(merged);
 }
-
-//this is a try!
