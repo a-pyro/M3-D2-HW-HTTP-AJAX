@@ -1109,11 +1109,13 @@ async function getData(urls) {
     return parsed;
   });
   const datas = await Promise.all(arrayOfPromises);
-  // console.log(datas);
-  datas.forEach((data) => {
+  console.log(datas);
+  datas.forEach((data, idx) => {
     const { data: dataArray } = data;
+    const artistName = urls[idx].slice(urls[idx].indexOf('=') + 1);
+
     console.log(dataArray);
-    showHomePage(dataArray);
+    showHomePage(dataArray, artistName);
   });
   /* Promise.all([arrayOfPromises])
     .then(() => {
