@@ -9,7 +9,8 @@ function getUserData() {
   login.classList.add('d-none');
   home.classList.remove('d-none');
   // showHomePage();
-  fetchDatas(endpoints);
+  // fetchDatas(endpoints);
+  getData(homePageEndpoints);
   fillUsersPlayList(musicStore, [userPlaylists, sideMenuMobile]);
   setTimeout(() => {
     showToaster(loginUserTextName);
@@ -26,8 +27,8 @@ function showToaster(user) {
 
   // After 3 seconds, remove the show class from DIV
   toasterEntryPoint.innerHTML = html;
-  console.log(toasterEntryPoint);
-  console.log(html);
+  // console.log(toasterEntryPoint);
+  // console.log(html);
   setTimeout(() => {
     toasterEntryPoint.remove();
   }, 2000);

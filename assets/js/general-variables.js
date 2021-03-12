@@ -1090,40 +1090,57 @@ const musicStore = sectionsData.reduce((acc, cv) => {
 }, []);
 
 // fetched datas from deezer api
-const endpoints = [
-  'https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem',
-  'https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica',
-  'https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth',
+const homePageEndpoints = [
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem',
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica',
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=behemoth',
 ];
 
-function fetchDatas(urls) {
-  const localList = [];
-  urls.forEach((endpoint, idx) => {
-    fetch(endpoint, {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-key': myKey,
-        'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
-      },
+///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ========== team build M3D5 ================
+///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const endpoint =
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica';
+
+async function getData(urls) {
+  const arrayOfPromises = urls.map(async (url) => {
+    const fetched = await fetch(url);
+    const parsed = await fetched.json();
+    return parsed;
+  });
+  const datas = await Promise.all(arrayOfPromises);
+  // console.log(datas);
+  datas.forEach((data) => {
+    const { data: dataArray } = data;
+    console.log(dataArray);
+    showHomePage(dataArray);
+  });
+  /* Promise.all([arrayOfPromises])
+    .then(() => {
+      console.log(data);
     })
+    .catch((err) => console.log(err)); */
+}
+
+/* function fetchDatas(urls) {
+  urls.forEach((endpoint, idx) => {
+    fetch(endpoint)
       .then((response) => response.json())
       .then((data) => {
+
         const { data: artistData } = data;
-        localList.push({
-          artistName: endpoint.slice(endpoint.indexOf('=') + 1),
-          artistData,
-        });
+        
         console.log(data, idx);
-        showHomePage(localList);
+        showHomePage(artistData);
       })
       .catch((err) => {
         console.error(err);
       });
   });
-}
+} */
 
 // UBEYT
-async function searchDeezer(query) {
+/* async function searchDeezer(query) {
   try {
     const response = await fetch(
       `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`,
@@ -1169,3 +1186,4 @@ async function getQueenSongs() {
   const merged = data.reduce((curr, acc) => [...acc, ...curr], []);
   console.log(merged);
 }
+ */
