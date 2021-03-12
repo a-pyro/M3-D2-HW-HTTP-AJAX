@@ -34,16 +34,17 @@ const srcImgTop5 = [
 
 //<---------Add this reference to 01dom-refenrences.js
 
-function showArtistPage() {
-  jsEntryPoint.innerHTML = `<!-----------------Artist Page content-------------------------->    
+function showArtistPage(artistName, artistPicBig) {
+  return function () {
+    jsEntryPoint.innerHTML = `<!-----------------Artist Page content-------------------------->    
 <!--Hero Section-->
-<div class="jumbotron pb-0 jumbotron-fluid d-flex justify-content-start align-items-end animate__animated animate__faster animate__fadeInDown">
+<div class="jumbotron pb-0 jumbotron-fluid d-flex justify-content-start align-items-end animate__animated animate__faster animate__fadeInDown" style="background-image: url('${artistPicBig}')">
   <div class="col">
     <span>
     <i class="fas fa-certificate text-primary"></i>
     Artista Verificado
     </span>
-    <h1 class="display-1">Alicia Keys</h1>
+    <h1 class="display-1">${artistName}</h1>
     <p class="lead">806.705 monthly listeners</p>
   </div>
 </div>
@@ -234,11 +235,12 @@ function showArtistPage() {
 <!--End Hero Section-->
 <div id="entryPointForAlbums" class="d-flex flex-wrap justify-content-center justify-content-center"></div>
 <!------------------------End content artist-page---------------->`;
-  const imgTargetTop5Html = document.querySelectorAll('.top-five-img');
-  imgTargetTop5Html.forEach((img, i) => {
-    img.src = srcImgTop5[i];
-  });
-  injectAlbumsInArtistPage(); //Calling function to inject Albums
+    const imgTargetTop5Html = document.querySelectorAll('.top-five-img');
+    imgTargetTop5Html.forEach((img, i) => {
+      img.src = srcImgTop5[i];
+    });
+    injectAlbumsInArtistPage(); //Calling function to inject Albums
+  };
 }
 
 //Ardi's function refurbished to inject albums in our artistPage------------->
