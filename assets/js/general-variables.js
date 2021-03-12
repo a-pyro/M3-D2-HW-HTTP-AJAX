@@ -1093,7 +1093,7 @@ const musicStore = sectionsData.reduce((acc, cv) => {
 const homePageEndpoints = [
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem',
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica',
-  'https://striveschool-api.herokuapp.com/api/deezer/search?q=behemoth',
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=queen',
 ];
 
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1109,13 +1109,25 @@ async function getData(urls) {
     return parsed;
   });
   const datas = await Promise.all(arrayOfPromises);
-  console.log(datas);
+  // console.log(datas);
   datas.forEach((data, idx) => {
     const { data: dataArray } = data;
     const artistName = urls[idx].slice(urls[idx].indexOf('=') + 1);
 
-    console.log(dataArray);
-    showHomePage(dataArray, artistName);
+    // console.log(dataArray);
+    const uniqueAlbums = dataArray
+      .map((element) => element.album)
+      .reduce((acc, cv) => {
+        if (acc.some((el) => el.id === cv.id)) {
+          return acc;
+        } else {
+          acc.push(cv);
+          return acc;
+        }
+      }, []);
+    console.log('uniqueAlbums: ', uniqueAlbums);
+    // showHomePage(dataArray, artistName);
+    showHomePage(uniqueAlbums, artistName);
   });
   /* Promise.all([arrayOfPromises])
     .then(() => {
