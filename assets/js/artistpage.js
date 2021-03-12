@@ -34,7 +34,13 @@ const srcImgTop5 = [
 
 //<---------Add this reference to 01dom-refenrences.js
 
-function showArtistPage(artistName, artistPicBig) {
+function showArtistPage(
+  artistName,
+  artistPicBig,
+  top5tracks,
+  artistPicSmall,
+  uniqueAlbums
+) {
   return function () {
     jsEntryPoint.innerHTML = `<!-----------------Artist Page content-------------------------->    
 <!--Hero Section-->
@@ -104,106 +110,35 @@ function showArtistPage(artistName, artistPicBig) {
         
         <div class="container top-five-asrtist">
           <h2 class="popular-releases-title text-white">Popular releases</h2>
-          <!--#1-->
-          <div class="row pb-3 align-items-center justify-content-around text-center">
+          ${top5tracks.reduce((acc, cv) => {
+            const { album, title_short, rank, duration, preview } = cv;
+            const { cover, id } = album;
+            console.log(cover);
+            return (
+              acc +
+              `
+            <div class="row pb-3 align-items-center justify-content-around text-center">
             <div class="d-flex">
               <span class="d-none">#P</span>
               <span> <i class="fas fa-play"></i></span>
             </div>
             <div class="d-flex align-items-center">
-              <img id="imgArtistTop1" class="top-five-img" src="https://via.placeholder.com/40" alt="minicover">
-              <Span class="mx-2">Title</Span>
+              <img id="imgArtistTop1" class="top-five-img" src="${cover}" alt="minicover">
+              <Span class="mx-2">${title_short}</Span>
             </div>
             <div class="d-flex">
-              <span>Listeners</span>
-            </div>
-            <div class="d-flex">
-              <Span><i class="px-2 far fa-heart px-1"></i></Span>
-            </div>
-            <div class="d-flex">
-              <span>05:58</span>
-            </div>
-          </div>
-          <!--#2-->
-          <div class="row pb-3 align-items-center justify-content-around text-center">
-            <div class="d-flex">
-              <span class="d-none">#P</span>
-              <span> <i class="fas fa-play"></i></span>
-            </div>
-            <div class="d-flex align-items-center">
-              <img id="imgArtistTop2" class="top-five-img" src="https://via.placeholder.com/40" alt="minicover">
-              <Span class="mx-2">Title</Span>
-            </div>
-            <div class="d-flex">
-              <span>Listeners</span>
+              <span>Rank: ${rank}</span>
             </div>
             <div class="d-flex">
               <Span><i class="px-2 far fa-heart px-1"></i></Span>
             </div>
             <div class="d-flex">
-              <span>05:58</span>
+              <span>${(duration / 60).toFixed(2)}</span>
             </div>
           </div>
-          <!--#3-->
-          <div class="row pb-3 align-items-center justify-content-around text-center">
-            <div class="d-flex">
-              <span class="d-none">#P</span>
-              <span> <i class="fas fa-play"></i></span>
-            </div>
-            <div class="d-flex align-items-center">
-              <img id="imgArtistTop3" class="top-five-img" src="https://via.placeholder.com/40" alt="minicover">
-              <Span class="mx-2">Title</Span>
-            </div>
-            <div class="d-flex">
-              <span>Listeners</span>
-            </div>
-            <div class="d-flex">
-              <Span><i class="px-2 far fa-heart px-1"></i></Span>
-            </div>
-            <div class="d-flex">
-              <span>05:58</span>
-            </div>
-          </div>
-          <!--#4-->
-          <div class="row pb-3 align-items-center justify-content-around text-center">
-            <div class="d-flex">
-              <span class="d-none">#P</span>
-              <span> <i class="fas fa-play"></i></span>
-            </div>
-            <div class="d-flex align-items-center">
-              <img id="imgArtistTop4" class="top-five-img" src="https://via.placeholder.com/40" alt="minicover">
-              <Span class="mx-2">Title</Span>
-            </div>
-            <div class="d-flex">
-              <span>Listeners</span>
-            </div>
-            <div class="d-flex">
-              <Span><i class="px-2 far fa-heart px-1"></i></Span>
-            </div>
-            <div class="d-flex">
-              <span>05:58</span>
-            </div>
-          </div>
-          <!--#5-->
-          <div class="row pb-3 align-items-center justify-content-around text-center">
-            <div class="d-flex">
-              <span class="d-none">#P</span>
-              <span> <i class="fas fa-play"></i></span>
-            </div>
-            <div class="d-flex align-items-center">
-              <img id="imgArtistTop5" class="top-five-img" src="https://via.placeholder.com/40" alt="minicover">
-              <Span class="mx-2">Title</Span>
-            </div>
-            <div class="d-flex">
-              <span>Listeners</span>
-            </div>
-            <div class="d-flex">
-              <Span><i class="px-2 far fa-heart px-1"></i></Span>
-            </div>
-            <div class="d-flex">
-              <span>05:58</span>
-            </div>
-          </div>
+            `
+            );
+          }, '')}
           <span><a class="link-more" href="#">See more</a></span>
         </div>
       </div>
@@ -214,11 +149,11 @@ function showArtistPage(artistName, artistPicBig) {
             <h2 class="artist-pick-title">Artist Pick</h2> 
             <div class="d-flex artist-pick">
               <div>
-                <img src="https://via.placeholder.com/76" alt="minicover-artispick">
+                <img src="${artistPicSmall}" alt="minicover-artispick">
               </div>
               <div class="container">
                 <div>
-                  <img src="https://via.placeholder.com/24" alt="mini-pick-profile">
+                  <img src="${artistPicSmall}" alt="mini-pick-profile">
                   <span>Posted By</span>
                 </div>
                 <div>
@@ -239,12 +174,12 @@ function showArtistPage(artistName, artistPicBig) {
     imgTargetTop5Html.forEach((img, i) => {
       img.src = srcImgTop5[i];
     });
-    injectAlbumsInArtistPage(); //Calling function to inject Albums
+    injectAlbumsInArtistPage(uniqueAlbums); //Calling function to inject Albums
   };
 }
 
 //Ardi's function refurbished to inject albums in our artistPage------------->
-function injectAlbumsInArtistPage() {
+function injectAlbumsInArtistPage(uniqueAlbums) {
   const entryPointForAlbums = document.getElementById(`entryPointForAlbums`);
   entryPointForAlbums.innerHTML = '';
   const coversHtml = musicStore

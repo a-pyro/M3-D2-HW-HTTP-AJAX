@@ -15,6 +15,7 @@ async function search(e) {
     const artistName = dataArray[0].artist.name;
     const artistPic = dataArray[0].artist.picture_medium;
     const artistPicBig = dataArray[0].artist.picture_xl;
+    const artistPicSmall = dataArray[0].artist.picture_small;
 
     console.log(dataArray);
     console.log(artistName);
@@ -39,6 +40,8 @@ async function search(e) {
       }
     }, []);
 
+    const top5tracks = tracks.slice(0, 5);
+    console.log('tracklist', top5tracks);
     jsEntryPoint.innerHTML = `
     <div class="container-fluid p-3 vh-100" style="cursor: pointer">
       <div class="row m-1 text-white my-border-light">
@@ -70,7 +73,17 @@ async function search(e) {
       </div>
     </div>
     `;
+
     const img = document.querySelector('.alicia-keys');
-    img.addEventListener('click', showArtistPage(artistName, artistPicBig));
+    img.addEventListener(
+      'click',
+      showArtistPage(
+        artistName,
+        artistPicBig,
+        top5tracks,
+        artistPicSmall,
+        uniqueAlbums
+      )
+    );
   }
 }
