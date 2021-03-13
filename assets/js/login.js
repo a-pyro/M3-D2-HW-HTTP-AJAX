@@ -1,6 +1,9 @@
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ========== login scripts ================
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// auto click login
+window.onload = loginBtn.click();
+
 function getUserData() {
   const loginUserName = document.getElementById('loginUser');
   const loginUserTextName = loginUserName.value;

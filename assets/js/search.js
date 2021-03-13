@@ -1,5 +1,3 @@
-window.onload = loginBtn.click();
-
 inputField.addEventListener('keyup', search);
 async function search(e) {
   if (e.keyCode === 13) {

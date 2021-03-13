@@ -1121,10 +1121,11 @@ Parameter: query
 Endpoint: https://striveschool-api.herokuapp.com/api/deezer/search?q={query}
 Example: https://striveschool-api.herokuapp.com/api/deezer/search?q=queen
 
-
-
 */
+const albumEndPoint =
+  'https://striveschool-api.herokuapp.com/api/deezer/album/';
 
+// load homepage with artists albums
 async function getData(urls) {
   try {
     const arrayOfPromises = urls.map(async (url) => {
