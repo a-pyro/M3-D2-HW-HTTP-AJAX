@@ -1102,6 +1102,12 @@ const homePageEndpoints = [
 const endpoint =
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica';
 
+/* 
+endpointper albums
+https://striveschool-api.herokuapp.com/api/deezer/artist/412/albums
+
+*/
+
 async function getData(urls) {
   try {
     const arrayOfPromises = urls.map(async (url) => {
