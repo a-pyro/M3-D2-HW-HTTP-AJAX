@@ -1103,55 +1103,37 @@ const endpoint =
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica';
 
 async function getData(urls) {
-  const arrayOfPromises = urls.map(async (url) => {
-    const fetched = await fetch(url);
-    const parsed = await fetched.json();
-    return parsed;
-  });
-  const datas = await Promise.all(arrayOfPromises);
-  // console.log(datas);
-  datas.forEach((data, idx) => {
-    const { data: dataArray } = data;
-    const artistName = urls[idx].slice(urls[idx].indexOf('=') + 1);
+  try {
+    const arrayOfPromises = urls.map(async (url) => {
+      const fetched = await fetch(url);
+      const parsed = await fetched.json();
+      return parsed;
+    });
+    const datas = await Promise.all(arrayOfPromises);
+    // console.log(datas);
+    datas.forEach((data, idx) => {
+      const { data: dataArray } = data;
+      const artistName = urls[idx].slice(urls[idx].indexOf('=') + 1);
 
-    // console.log(dataArray);
-    const uniqueAlbums = dataArray
-      .map((element) => element.album)
-      .reduce((acc, cv) => {
-        if (acc.some((el) => el.id === cv.id)) {
-          return acc;
-        } else {
-          acc.push(cv);
-          return acc;
-        }
-      }, []);
-    console.log('uniqueAlbums: ', uniqueAlbums);
-    // showHomePage(dataArray, artistName);
-    showHomePage(uniqueAlbums, artistName);
-  });
-  /* Promise.all([arrayOfPromises])
-    .then(() => {
-      console.log(data);
-    })
-    .catch((err) => console.log(err)); */
+      // console.log(dataArray);
+      const uniqueAlbums = dataArray
+        .map((element) => element.album)
+        .reduce((acc, cv) => {
+          if (acc.some((el) => el.id === cv.id)) {
+            return acc;
+          } else {
+            acc.push(cv);
+            return acc;
+          }
+        }, []);
+      console.log('uniqueAlbums: ', uniqueAlbums);
+      // showHomePage(dataArray, artistName);
+      showHomePage(uniqueAlbums, artistName);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
-
-/* function fetchDatas(urls) {
-  urls.forEach((endpoint, idx) => {
-    fetch(endpoint)
-      .then((response) => response.json())
-      .then((data) => {
-
-        const { data: artistData } = data;
-        
-        console.log(data, idx);
-        showHomePage(artistData);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
-} */
 
 // UBEYT
 /* async function searchDeezer(query) {
