@@ -1,4 +1,3 @@
-const myKey = config.MY_KEY;
 const urls = [
   'https://t.scdn.co/images/ad4d5c268a214f78920517e76e6ed107.jpeg',
   'https://t.scdn.co/images/68433b0ee5b5465b8e926c42b84cbcdb.jpeg',
@@ -1094,6 +1093,7 @@ const homePageEndpoints = [
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem',
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica',
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=queen',
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=daftpunk',
 ];
 
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1105,6 +1105,23 @@ const endpoint =
 /* 
 endpointper albums
 https://striveschool-api.herokuapp.com/api/deezer/artist/412/albums
+
+💿 Album Page
+Parameter: album id
+Endpoint : https://striveschool-api.herokuapp.com/api/deezer/album/{id} 
+Example: https://striveschool-api.herokuapp.com/api/deezer/album/75621062
+
+🎸 Artist page
+Parameter:  artist id 
+Endpoint: https://striveschool-api.herokuapp.com/api/deezer/artist/{id}
+Example: https://striveschool-api.herokuapp.com/api/deezer/artist/412
+
+🔍 Search
+Parameter: query
+Endpoint: https://striveschool-api.herokuapp.com/api/deezer/search?q={query}
+Example: https://striveschool-api.herokuapp.com/api/deezer/search?q=queen
+
+
 
 */
 
