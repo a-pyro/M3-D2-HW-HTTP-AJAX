@@ -10,7 +10,7 @@ async function getCardsInfo(e) {
     const data = await response.json();
     console.log(data);
 
-    // showAlbumPage(url, title);
+    showAlbumPage(data);
   } catch (error) {
     console.log(error);
   }

@@ -1,3 +1,6 @@
+// auto click login
+window.onload = loginBtn.click();
+
 // change navbar color on scroll
 window.addEventListener('scroll', changeNavBg);
 
