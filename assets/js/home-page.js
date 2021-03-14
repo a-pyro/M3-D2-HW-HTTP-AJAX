@@ -82,12 +82,19 @@ function renderHomePage(
   </section>
   `;
 
-  const cards = document.querySelectorAll('.card-custom');
-  cards.forEach((card) => {
+  const albumbsCards = document.querySelectorAll('div[data-album-id]');
+  albumbsCards.forEach((card) => {
     card.addEventListener('click', getCardsInfo);
     card.classList.remove('animate__fadeInUp');
     card.classList.add('animate__fadeInUp');
   });
+
+  const playlistsCards = document.querySelectorAll('div[data-playlist-id]');
+  playlistsCards.forEach((btn) =>
+    btn.addEventListener('click', (e) => {
+      console.log('im a playlist cards');
+    })
+  );
 }
 
 function AlbumsComponent(dataObj) {
