@@ -47,7 +47,7 @@ function showAlbumPage({
   container.classList.remove('animate__fadeInDown');
   container.classList.add('animate__fadeInDown');
   const playBtns = container.querySelectorAll('.fa-play');
-  console.log(playBtns);
+  playBtns.forEach((btn) => btn.addEventListener('click', playMusic));
 }
 
 function TableRowComponent({
@@ -57,7 +57,7 @@ function TableRowComponent({
   preview,
 }) {
   return `
-    <tr>
+    <tr class"song-row">
       <th scope="row" data-audio="${preview}"><i class="fas fa-play"></i><i class="fas fa-pause d-none"></i></th>
       <td class="album-pagne-song-title"> ${title} <br> <h6 style="font-size: 10px;" class="text-muted">${artistName}</h6></td>
       <td>${
@@ -67,4 +67,14 @@ function TableRowComponent({
       }</td>
     </tr>
   `;
+}
+
+function playMusic(e) {
+  // console.log(e.target);
+  // console.log(e.target.parentElement);
+  // console.log(e.target.parentElement.dataset);
+  const { audio: audioUrl } = e.target.parentElement.dataset;
+  console.log(audioUrl);
+  const audio = new Audio(audioUrl);
+  audio.play();
 }
