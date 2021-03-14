@@ -90,11 +90,9 @@ function renderHomePage(
   });
 
   const playlistsCards = document.querySelectorAll('div[data-playlist-id]');
-  playlistsCards.forEach((btn) =>
-    btn.addEventListener('click', (e) => {
-      console.log('im a playlist cards');
-    })
-  );
+  playlistsCards.forEach((btn) => btn.addEventListener('click', getPlaylists));
+  card.classList.remove('animate__fadeInUp');
+  card.classList.add('animate__fadeInUp');
 }
 
 function AlbumsComponent(dataObj) {

@@ -1,0 +1,26 @@
+.playlist-table {
+  cursor: pointer;
+  color: var(--light);
+}
+
+.playlist-table tr {
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.playlist-table tr:hover {
+  background: rgba(169, 169, 169, 0.124);
+}
+
+.playlistPlaySongBtn {
+  visibility: hidden;
+}
+
+.playlist-table tr:hover .playlistPlaySongBtn {
+  visibility: visible;
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .playlist-section {
+    font-size: 0.8rem;
+  }
+}
