@@ -10,7 +10,7 @@ function getUserData() {
   login.classList.add('d-none');
   home.classList.remove('d-none');
   // getChartData(chartEndpoint);
-  getChartData(chartEndpoint);
+  getChartData(chartEndpointDZ);
   fillUsersPlayList(musicStore, [userPlaylists, sideMenuMobile]);
   setTimeout(() => {
     showToaster(loginUserTextName);

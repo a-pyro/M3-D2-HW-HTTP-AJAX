@@ -1126,7 +1126,8 @@ let audioPlaying = false;
 
 const albumEndPoint =
   'https://striveschool-api.herokuapp.com/api/deezer/album/';
-const chartEndpoint = `${proxy}/api.deezer.com/chart/`;
+// const chartEndpoint = `${proxy}/api.deezer.com/chart/`;
+const chartEndpointDZ = `${proxy}/api.deezer.com/chart/`;
 
 // load homepage with artists albums
 /* async function getData(urls) {
