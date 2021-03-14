@@ -1,6 +1,7 @@
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ========== login scripts ================
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 function getUserData() {
   const loginUserName = document.getElementById('loginUser');
   const loginUserTextName = loginUserName.value;
@@ -8,9 +9,8 @@ function getUserData() {
   home.classList.remove('animate__fadeOutLeft');
   login.classList.add('d-none');
   home.classList.remove('d-none');
-  // showHomePage();
-  // fetchDatas(endpoints);
-  getData(homePageEndpoints);
+  // getChartData(chartEndpoint);
+  getChartData(chartEndpoint);
   fillUsersPlayList(musicStore, [userPlaylists, sideMenuMobile]);
   setTimeout(() => {
     showToaster(loginUserTextName);
@@ -37,7 +37,7 @@ function showToaster(user) {
 /* loginBtn.addEventListener('click', () => {
   login.classList.add('d-none');
   home.classList.remove('d-none');
-  showHomePage();
+  renderHomePage();
   fillUsersPlayList(musicStore, [userPlaylists, sideMenuMobile]);
 });
  */

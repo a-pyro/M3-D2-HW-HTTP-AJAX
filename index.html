@@ -13,6 +13,8 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
      user-scalable=0"
     />
+    <!-- meta to remove problems concerning favicon -->
+    <link rel="icon" href="data:," />
     <!-- normalize css -->
     <!-- <link
       rel="stylesheet"
@@ -326,7 +328,7 @@
         <!------------------------Sidemenu end --------------------->
 
         <!----------------------  main section  ----------------------->
-        <main class="home-main-section container-fluid px-3 pt-3">
+        <main class="home-main-section container-fluid px-3 pt-3 pb-5">
           <!----------------------  nav  ----------------------->
           <!-- <span id="toasterEntryPoint"></span> -->
 
@@ -358,8 +360,6 @@
             </li>
 
             <span id="toasterEntryPoint"></span>
-
-
 
             <li class="nav-item ml-auto nav-item-dropdown">
               <div class="dropdown home-dropdown">
@@ -573,7 +573,12 @@
                   <i class="fas fa-volume-up px-2"></i>
                   <i class="fas fa-volume-mute px-2 d-none"></i>
                   <div class="d-flex px-1">
-                    <input class="custom-range" type="range" name="" id="" />
+                    <input
+                      class="custom-range"
+                      type="range"
+                      name=""
+                      id="volumeSlider"
+                    />
                   </div>
                 </div>
               </div>
@@ -696,7 +701,7 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    <script src="config.js"></script>
+    <script src="./assets/js/secrets.js"></script>
     <script src="./assets/js/general-variables.js"></script>
     <script src="./assets/js/dom-references.js"></script>
     <script src="./assets/js/login.js"></script>

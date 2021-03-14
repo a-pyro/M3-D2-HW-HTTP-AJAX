@@ -50,7 +50,7 @@ div.jumbotron {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  background-position: center;
+  background-position: 3% 10%;
   height: 500px;
   color: #f8f8f8; /*added just fro the test day*/
 }

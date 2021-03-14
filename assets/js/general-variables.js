@@ -1,4 +1,3 @@
-const myKey = config.MY_KEY;
 const urls = [
   'https://t.scdn.co/images/ad4d5c268a214f78920517e76e6ed107.jpeg',
   'https://t.scdn.co/images/68433b0ee5b5465b8e926c42b84cbcdb.jpeg',
@@ -1094,6 +1093,7 @@ const homePageEndpoints = [
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem',
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica',
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=queen',
+  'https://striveschool-api.herokuapp.com/api/deezer/search?q=daftpunk',
 ];
 
 ///::::::::::::::::::::::::::::>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1102,56 +1102,77 @@ const homePageEndpoints = [
 const endpoint =
   'https://striveschool-api.herokuapp.com/api/deezer/search?q=metallica';
 
-async function getData(urls) {
-  const arrayOfPromises = urls.map(async (url) => {
-    const fetched = await fetch(url);
-    const parsed = await fetched.json();
-    return parsed;
-  });
-  const datas = await Promise.all(arrayOfPromises);
-  // console.log(datas);
-  datas.forEach((data, idx) => {
-    const { data: dataArray } = data;
-    const artistName = urls[idx].slice(urls[idx].indexOf('=') + 1);
+/* 
+endpointper albums
+/api/deezer/artist/412/albums
 
-    // console.log(dataArray);
-    const uniqueAlbums = dataArray
-      .map((element) => element.album)
-      .reduce((acc, cv) => {
-        if (acc.some((el) => el.id === cv.id)) {
-          return acc;
-        } else {
-          acc.push(cv);
-          return acc;
-        }
-      }, []);
-    console.log('uniqueAlbums: ', uniqueAlbums);
-    // showHomePage(dataArray, artistName);
-    showHomePage(uniqueAlbums, artistName);
-  });
-  /* Promise.all([arrayOfPromises])
-    .then(() => {
-      console.log(data);
-    })
-    .catch((err) => console.log(err)); */
-}
+💿 Album Page
+Parameter: album id
+Endpoint : /api/deezer/album/{id} 
+Example: /api/deezer/album/75621062
 
-/* function fetchDatas(urls) {
-  urls.forEach((endpoint, idx) => {
-    fetch(endpoint)
-      .then((response) => response.json())
-      .then((data) => {
+🎸 Artist page
+Parameter:  artist id 
+Endpoint: /api/deezer/artist/{id}
+Example: /api/deezer/artist/412
 
-        const { data: artistData } = data;
-        
-        console.log(data, idx);
-        showHomePage(artistData);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
+🔍 Search
+Parameter: query
+Endpoint: /api/deezer/search?q={query}
+Example: /api/deezer/search?q=queen
+
+*/
+let audioPlaying = false;
+
+const albumEndPoint =
+  'https://striveschool-api.herokuapp.com/api/deezer/album/';
+const chartEndpoint = `${proxy}/api.deezer.com/chart/`;
+
+// load homepage with artists albums
+/* async function getData(urls) {
+  try {
+    const arrayOfPromises = urls.map(async (url) => {
+      const fetched = await fetch(url);
+      const parsed = await fetched.json();
+      return parsed;
+    });
+    const datas = await Promise.all(arrayOfPromises);
+    // console.log(datas);
+    datas.forEach((data, idx) => {
+      const { data: dataArray } = data;
+      const artistName = urls[idx].slice(urls[idx].indexOf('=') + 1);
+
+      // console.log(dataArray);
+      const uniqueAlbums = dataArray
+        .map((element) => element.album)
+        .reduce((acc, cv) => {
+          if (acc.some((el) => el.id === cv.id)) {
+            return acc;
+          } else {
+            acc.push(cv);
+            return acc;
+          }
+        }, []);
+      console.log('uniqueAlbums: ', uniqueAlbums);
+      // renderHomePage(dataArray, artistName);
+      renderHomePage(uniqueAlbums, artistName);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 } */
+
+async function getChartData(endpoint) {
+  try {
+    const resp = await fetch(endpoint);
+    const data = await resp.json();
+    console.log(data);
+    const sectionsNames = Object.keys(data).sort();
+    renderHomePage(data, sectionsNames);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // UBEYT
 /* async function searchDeezer(query) {

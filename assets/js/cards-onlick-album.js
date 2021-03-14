@@ -1,18 +1,17 @@
 // jsEntryPoint.addEventListener('click', getCardInfo);
 
-function getCardsInfo(e) {
-  const card = e.target.closest('.card-custom');
-  // from the card tkae the id => is in the spa
-  // card.querySelector('span')
-  // query id = sspan.id
-  // const queryID = card.getelebyid()
-  //`https://striveschool-api.herokuapp.com/api/deezer/album/${queryId}`
-  //needd to make a fetch request for the album with that id
-  const title = card.querySelector('.card-title-custom').innerText;
-  const img = card.querySelector('img');
-  const url = img.src;
-  console.log(title);
-  console.log(url);
+async function getCardsInfo(e) {
+  try {
+    const card = e.target.closest('.card-custom');
+    const { albumId } = card.dataset;
+    console.log(albumId);
 
-  showAlbumPage(url, title);
+    const response = await fetch(`${albumEndPoint}${albumId}`);
+    const data = await response.json();
+    console.log(data);
+
+    showAlbumPage(data);
+  } catch (error) {
+    console.log(error);
+  }
 }

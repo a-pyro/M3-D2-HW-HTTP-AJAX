@@ -1,3 +1,8 @@
+// auto click login
+window.onload = function () {
+  loginBtn.click();
+};
+
 // change navbar color on scroll
 window.addEventListener('scroll', changeNavBg);
 
@@ -65,8 +70,8 @@ sideMenuMobileBtn.addEventListener('click', (e) => {
 const [homeBtnMobile, searchBtnMobile, libraryBtnMobile] = [
   ...document.querySelectorAll('#mobileBottomMenu a'),
 ];
-const root = document.querySelector(':root');
 
+const root = document.querySelector(':root');
 const mobileMenuBottomBtns = document.querySelectorAll('#mobileBottomMenu a');
 homeBtnMobile.addEventListener('click', goToHome);
 searchBtnMobile.addEventListener('click', goTosearch);
@@ -76,7 +81,7 @@ searchSideDesktop.addEventListener('click', goTosearchSide);
 librarySideDesktop.addEventListener('click', goTolibrarySide);
 installAppBtn.addEventListener('click', installApp);
 
-// animate active button
+// animate active button on mobile view
 const makeActive = (target) => {
   mobileMenuBottomBtns.forEach((btn) => btn.classList.remove('active'));
   target.classList.add('active');
@@ -93,6 +98,7 @@ const makeActive = (target) => {
   }
 };
 
+// make active side menu on desktop/tablet
 function makeActiveSideMenu(target) {
   homeSideDesktop.classList.remove('active');
   searchSideDesktop.classList.remove('active');
@@ -101,6 +107,7 @@ function makeActiveSideMenu(target) {
   target.classList.add('active');
 }
 
+// go to home from mobile
 function goToHome(e) {
   inputField.value = '';
   inputField.classList.add('d-none');
@@ -108,8 +115,10 @@ function goToHome(e) {
   e.preventDefault();
   makeActive(e.currentTarget);
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 }
+
+// from mobile
 function goTosearch(e) {
   nextBtn.classList.add('d-none');
   inputField.classList.add('animate__fadeInDown');
@@ -119,16 +128,18 @@ function goTosearch(e) {
   showSearchPage();
   inputField.focus();
 }
+
 function goTosearchSide(e) {
   nextBtn.classList.add('d-none');
   inputField.classList.add('animate__fadeInDown');
   inputField.classList.remove('d-none');
-
   e.preventDefault();
   makeActiveSideMenu(e.currentTarget);
   showSearchPage();
   inputField.focus();
 }
+
+// from mobile
 function goTolibrary(e) {
   e.preventDefault();
   makeActive(e.currentTarget);
@@ -142,7 +153,7 @@ spotifyLogo.addEventListener('click', (e) => {
   librarySideDesktop.classList.remove('active');
   installAppBtn.classList.remove('active');
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 });
 
 // go to home from prev Btn
@@ -156,7 +167,7 @@ prevBtn.addEventListener('click', (e) => {
   librarySideDesktop.classList.remove('active');
   installAppBtn.classList.remove('active');
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 });
 
 function goToHomeSide(e) {
@@ -166,7 +177,7 @@ function goToHomeSide(e) {
   e.preventDefault();
   makeActiveSideMenu(e.currentTarget);
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 }
 
 function goTolibrarySide(e) {
