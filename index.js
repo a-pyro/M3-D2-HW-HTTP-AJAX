@@ -1,9 +1,6 @@
 // auto click login
-window.onload = async function () {
+window.onload = function () {
   loginBtn.click();
-  const resp = await fetch(`${proxy}/api.deezer.com/chart/`);
-  const data = await resp.json();
-  console.log(data);
 };
 
 // change navbar color on scroll
@@ -118,7 +115,7 @@ function goToHome(e) {
   e.preventDefault();
   makeActive(e.currentTarget);
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 }
 
 // from mobile
@@ -156,7 +153,7 @@ spotifyLogo.addEventListener('click', (e) => {
   librarySideDesktop.classList.remove('active');
   installAppBtn.classList.remove('active');
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 });
 
 // go to home from prev Btn
@@ -170,7 +167,7 @@ prevBtn.addEventListener('click', (e) => {
   librarySideDesktop.classList.remove('active');
   installAppBtn.classList.remove('active');
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 });
 
 function goToHomeSide(e) {
@@ -180,7 +177,7 @@ function goToHomeSide(e) {
   e.preventDefault();
   makeActiveSideMenu(e.currentTarget);
   jsEntryPoint.innerHTML = '';
-  getData(homePageEndpoints);
+  getChartData(chartEndpoint);
 }
 
 function goTolibrarySide(e) {
