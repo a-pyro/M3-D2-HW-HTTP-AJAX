@@ -1122,6 +1122,8 @@ Endpoint: https://striveschool-api.herokuapp.com/api/deezer/search?q={query}
 Example: https://striveschool-api.herokuapp.com/api/deezer/search?q=queen
 
 */
+let audioPlaying = false;
+
 const albumEndPoint =
   'https://striveschool-api.herokuapp.com/api/deezer/album/';
 

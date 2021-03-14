@@ -47,7 +47,7 @@ function showAlbumPage({
   container.classList.remove('animate__fadeInDown');
   container.classList.add('animate__fadeInDown');
   const playBtns = container.querySelectorAll('.fa-play');
-  playBtns.forEach((btn) => btn.addEventListener('click', playMusic));
+  playBtns.forEach((btn) => btn.addEventListener('click', returnAudioObject));
 }
 
 function TableRowComponent({
@@ -58,7 +58,7 @@ function TableRowComponent({
 }) {
   return `
     <tr class"song-row">
-      <th scope="row" data-audio="${preview}"><i class="fas fa-play"></i><i class="fas fa-pause d-none"></i></th>
+      <th scope="row" class="audio-preview" data-audio="${preview}"><i class="fas fa-play"></i><i class="fas fa-pause d-none"></i></th>
       <td class="album-pagne-song-title"> ${title} <br> <h6 style="font-size: 10px;" class="text-muted">${artistName}</h6></td>
       <td>${
         duration < 60
@@ -69,12 +69,77 @@ function TableRowComponent({
   `;
 }
 
-function playMusic(e) {
+// function returnAudioObject() {
+//   // console.log(e.target);
+//   // console.log(e.target.parentElement);
+//   // console.log(e.target.parentElement.dataset);
+//   // const pauseBtn = e.target.parentElement.querySelector('.fa-pause');
+//   // const playBtn = e.target;
+//   //letAudioPalying is in general-variables set to false
+
+//   // audioPlaying = !audioPlaying;
+//   // playBtn.classList.toggle('d-none');
+//   // pauseBtn.classList.toggle('d-none');
+
+//   const rows = document.querySelectorAll('.audio-preview');
+//   const audioObjects = Array.from(rows).map((row) => {
+//     const { audio: audioUrl } = row.dataset;
+//     const audio = new Audio(audioUrl);
+//     return audio;
+//   });
+//   // console.log(audioObjects);
+
+//   // return function () {
+//   //   if (audio.paused) {
+//   //     audio.play();
+//   //   } else {
+//   //     audio.pause();
+//   //   }
+//   // };
+//   return function (e) {
+//     console.log(e.target);
+//     console.log(audioObjects[0]);
+//     const audioToPlay = audioObjects.find(
+//       (audio) => audio.src === e.target.src
+//     );
+//     console.log(audioToPlay);
+//     audioToPlay.play();
+//     // audioObjects.forEach(audio => {
+//     //   audio.pause()
+
+//     // })
+//   };
+// }
+
+function returnAudioObject(e) {
   // console.log(e.target);
   // console.log(e.target.parentElement);
   // console.log(e.target.parentElement.dataset);
-  const { audio: audioUrl } = e.target.parentElement.dataset;
-  console.log(audioUrl);
-  const audio = new Audio(audioUrl);
-  audio.play();
+  const pauseBtn = e.target.parentElement.querySelector('.fa-pause');
+  const playBtn = e.target;
+  //letAudioPalying is in general-variables set to false
+
+  // audioPlaying = !audioPlaying;
+  // playBtn.classList.toggle('d-none');
+  // pauseBtn.classList.toggle('d-none');
+
+  if (audio) {
+    if (5 > 2) {
+      console.log('suca');
+    } else {
+      console.log('merda');
+    }
+  } else {
+    var { audio: audioUrl } = e.target.parentElement.dataset;
+    var audio = new Audio(audioUrl);
+    audio.play();
+  }
+
+  // return function playPauseAudio() {
+  //   if (audio.paused) {
+  //     audio.play();
+  //   } else {
+  //     audio.pause();
+  //   }
+  // };
 }

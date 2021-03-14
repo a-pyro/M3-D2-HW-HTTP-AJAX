@@ -1,5 +1,10 @@
 // auto click login
-window.onload = loginBtn.click();
+window.onload = async function () {
+  loginBtn.click();
+  const resp = await fetch(`${proxy}/api.deezer.com/chart/`);
+  const data = await resp.json();
+  console.log(data);
+};
 
 // change navbar color on scroll
 window.addEventListener('scroll', changeNavBg);
